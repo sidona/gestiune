@@ -41,6 +41,9 @@ public class ProductController {
         model.addAttribute("orders",orders);
         return ordersService.findAllOrders();
     }
+   
+
+
 
     @RequestMapping(value = "/getAllCustomer", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
@@ -67,6 +70,6 @@ public class ProductController {
         System.out.println("product ");
         return service.findAllProducts();
 
-
     }
+
 }

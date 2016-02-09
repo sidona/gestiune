@@ -1,13 +1,18 @@
 package com.gestiune.dao;
 
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import com.gestiune.model.Customer;
+import com.gestiune.model.Product;
 import org.hibernate.Criteria;
+import org.hibernate.criterion.Order;
 import org.springframework.stereotype.Repository;
 
-
+import java.sql.ResultSet;
 import java.util.List;
+import java.util.Queue;
 
 /**
  * Created by sdonose on 2/8/2016.

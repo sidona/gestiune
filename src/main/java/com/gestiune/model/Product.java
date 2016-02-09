@@ -96,14 +96,4 @@ public class Product {
         result = 31 * result + orderSet.hashCode();
         return result;
     }
-
-    @Override
-    public String toString() {
-        return "Product{" +
-                "productId=" + productId +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                ", orderSet=" + orderSet +
-                '}';
-    }
 }
