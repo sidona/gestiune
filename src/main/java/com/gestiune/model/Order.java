@@ -29,7 +29,7 @@ public class Order {
     private Customer customer;
 
     @NotEmpty
-    @ManyToMany(targetEntity = Product.class, mappedBy = "orderSet",fetch=FetchType.EAGER)
+    @ManyToMany(targetEntity = Product.class, mappedBy = "orderSet",fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     @JsonIgnore
     private Set<Product> product=new HashSet<Product>();
 
@@ -84,4 +84,13 @@ public class Order {
         return result;
     }
 
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", customerId=" + customerId +
+                ", customer=" + customer +
+                ", product=" + product +
+                '}';
+    }
 }

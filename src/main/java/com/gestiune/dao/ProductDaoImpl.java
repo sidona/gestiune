@@ -1,9 +1,7 @@
 package com.gestiune.dao;
 
 import com.gestiune.model.Product;
-import org.hibernate.Criteria;
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
+import org.hibernate.*;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +38,9 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
     }
 
     public List<Product> findAllProductOrder() {
-        List<Product> list=(List<Product>)sessionFactory.getCurrentSession().createQuery(String.format(" select p FROM Product p")).list();
+        List<Product> list=(List<Product>)sessionFactory.getCurrentSession().createSQLQuery(String.format("SELECT * \n" +
+                "FROM product p \n" +
+                "\tINNER JOIN order_product op ON ( p.product_id = op.product_id  )  ")).addEntity(Product.class).list();
 
         return list;
     }

@@ -43,6 +43,15 @@ public class ProductController {
         return ordersService.findAllOrders();
     }
 
+    @RequestMapping(value = "/getAllOrdersByProduct", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<Order> listOrdersByProduct(ModelMap model) {
+        List<Order> orders = ordersService.findOrderByProduct();
+        model.addAttribute("orders", orders);
+        return ordersService.findOrderByProduct();
+    }
+
+
     @RequestMapping(value = "/addNewOrder", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     boolean saveOrder(@RequestBody Order order) {
@@ -86,7 +95,7 @@ public class ProductController {
 
 //Product
 
-    @RequestMapping(value = "/getAll", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getAllProduct", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Product> listProduct(ModelMap model) {
         List<Product> products = service.findAllProducts();
@@ -96,7 +105,7 @@ public class ProductController {
 
     }
 
-    @RequestMapping(value = "/getAllProduct", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getAllProductOrder", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Product> listProductOrder(ModelMap model) {
         List<Product> products = service.findAllProductOrder();
