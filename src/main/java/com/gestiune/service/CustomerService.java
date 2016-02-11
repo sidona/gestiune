@@ -9,6 +9,11 @@ import java.util.List;
  */
 public interface CustomerService {
 
+    Customer findById(int customerId);
+
     List<Customer> findAll();
+
     List<Customer> findAllCustomer();
+
+    void saveCustomer(Customer customer);
 }

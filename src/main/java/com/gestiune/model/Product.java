@@ -33,16 +33,24 @@ public class Product {
     @Column(name = "PRICE", nullable = false)
     private BigDecimal price;
 
-    @NotEmpty
-    @ManyToMany(fetch = FetchType.LAZY)
+
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JsonIgnore
     @JoinTable(name = "ORDER_PRODUCT",
-            joinColumns = { @JoinColumn(name = "ORD_ID") },
-            inverseJoinColumns = { @JoinColumn(name = "PROD_ID") })
+            joinColumns = { @JoinColumn(name = "PRODUCT_ID",referencedColumnName="PRODUCT_ID") },
+            inverseJoinColumns = { @JoinColumn(name = "ORDER_ID",referencedColumnName="ORDER_ID") })
     private Set<Order> orderSet=new HashSet<Order>();
 
     public Set<Order> getOrderSet() {
         return orderSet;
+    }
+
+    public Product(){
+
+    }
+    public Product(BigDecimal price, String name) {
+        this.price = price;
+        this.name = name;
     }
 
     public void setOrderSet(Set<Order> orderSet) {

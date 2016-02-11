@@ -9,4 +9,5 @@ import java.util.List;
  */
 public interface OrdersService {
     List<Order> findAllOrders();
+    void saveOrder(Order order);
 }

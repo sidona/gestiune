@@ -13,8 +13,9 @@ public interface ProductDao {
 
     void saveProduct(Product product);
 
-
     List<Product> findAllProducts();
+
+    List<Product> findAllProductOrder();
 
     Product findProductByName(String name);
 }

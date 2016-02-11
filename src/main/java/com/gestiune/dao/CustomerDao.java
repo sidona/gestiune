@@ -9,6 +9,11 @@ import java.util.List;
  */
 public interface CustomerDao {
 
+    Customer findById(int customerId);
+
+    void saveCustomer(Customer customer);
+
     List<Customer> findAll();
+
     List<Customer> findAllCustomer();
 }

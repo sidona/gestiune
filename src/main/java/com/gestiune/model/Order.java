@@ -4,6 +4,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by sdonose on 2/8/2016.
@@ -16,26 +18,39 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ORDER_ID", nullable = false)
     private int orderId;
-   @Column(name = "CUST_ID", nullable = false, insertable = false, updatable = false)
-    private int custId;
+    @Column(name = "CUSTOMER_ID", nullable = false, insertable = false, updatable = false)
+    private int customerId;
 
 
     @NotEmpty
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JsonIgnore
-    @JoinColumn(name = "CUST_ID" , nullable = false)
+    @JoinColumn(name = "CUSTOMER_ID" , nullable = false)
     private Customer customer;
+
+    @NotEmpty
+    @ManyToMany(targetEntity = Product.class, mappedBy = "orderSet",fetch=FetchType.EAGER)
+    @JsonIgnore
+    private Set<Product> product=new HashSet<Product>();
+
+    public Set<Product> getProduct() {
+        return product;
+    }
+
+    public void setProduct(Set<Product> product) {
+        this.product = product;
+    }
 
     public int getOrderId() {
         return orderId;
     }
 
-    public int getCustId() {
-        return custId;
+    public int getCustomerId() {
+        return customerId;
     }
 
-    public void setCustId(int custId) {
-        this.custId = custId;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     public void setOrderId(int orderId) {

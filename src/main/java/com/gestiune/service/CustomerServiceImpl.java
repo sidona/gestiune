@@ -19,12 +19,20 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerDao dao;
 
 
+    public Customer findById(int customerId) {
+        return dao.findById(customerId);
+    }
+
     public List<Customer> findAll() {
         return dao.findAll();
     }
 
     public List<Customer> findAllCustomer() {
         return dao.findAllCustomer();
+    }
+
+    public void saveCustomer(Customer customer) {
+        dao.saveCustomer(customer);
     }
 
 

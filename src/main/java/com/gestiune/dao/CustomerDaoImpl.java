@@ -23,6 +23,14 @@ public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements C
     @Autowired
     private SessionFactory sessionFactory;
 
+    public Customer findById(int customerId) {
+        return getByKey(customerId);
+    }
+
+    public void saveCustomer(Customer customer){
+        persist(customer);
+    }
+
     public List<Customer> findAll() {
         Criteria criteria = createEntityCriteria();
         System.out.println("CustomerDaoImpl.findAll"+criteria.list());

@@ -20,6 +20,9 @@ public class OrdersDaoImpl extends AbstractDao<Integer, Order> implements Orders
         return (List<Order>) criteria.list();
     }
 
+    public void saveOrder(Order order) {
+        persist(order);
+    }
 
 
 }
