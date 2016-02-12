@@ -3,6 +3,6 @@
  */
 "use strict";
 angular.module('myApp')
-    .controller('productDetailCtrl', function ($scope, $stateParams, detailProduct) {
-        $scope.detailProduct = detailProduct.get({productId: $stateParams.productId})
+    .controller('productDetailCtrl', function ($scope, $stateParams, detailProduct,deleteProduct) {
+        $scope.productDetail = detailProduct.get({productId: $stateParams.productId})
     });
