@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.PersistenceContext;
+import javax.persistence.*;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,12 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("name", name));
         return (Product) criteria.uniqueResult();
+    }
+
+    public void deleteProductByName(String name) {
+        SQLQuery query=getSession().createSQLQuery(String.format("delete FROM product where name=:name"));
+        query.setParameter("name",name);
+        query.executeUpdate();
     }
 }
 

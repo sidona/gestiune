@@ -14,3 +14,10 @@ angular.module('myApp').service('addProduct',function($resource){
        post:{method:'POST'}
     })
 });
+
+angular.module('myApp').service('detailProduct',function($resource){
+    return $resource('http://localhost:8080/product/:id',{id:'productId'},
+        {
+            post:{method:'POST'}
+        })
+});

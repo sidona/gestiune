@@ -18,4 +18,6 @@ public interface ProductDao {
     List<Product> findAllProductOrder();
 
     Product findProductByName(String name);
+
+    void deleteProductByName(String name);
 }

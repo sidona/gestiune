@@ -13,7 +13,7 @@ public interface ProductService {
 
     void saveProduct(Product product);
 
-
+    void deleteProductByName(String name);
     List<Product> findAllProducts();
     List<Product> findAllProductOrder();
 

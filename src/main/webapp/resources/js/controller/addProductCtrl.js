@@ -3,12 +3,13 @@
  */
 
 
-angular.module('myApp').controller('addProductCtrl',function($scope,addProduct,$state){
-    $scope.newProduct=new addProduct();
+angular.module('myApp')
+    .controller('addProductCtrl', function ($scope, addProduct, $state) {
+        $scope.newProduct = new addProduct();
 
-    $scope.addProduct=function(){
-        $scope.newProduct.$save(function(){
-            $state.go('/')
-        })
-    }
-});
+        $scope.addProduct = function () {
+            $scope.newProduct.$save(function () {
+                $state.go('/')
+            })
+        }
+    });

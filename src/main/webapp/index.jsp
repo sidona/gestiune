@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="resources/css/main.css">
 
     <script src="<c:url value="/resources/lib/jquery-1.12.0.min.js"/>"></script>
+    <script src="<c:url value="/resources/lib/jspdf.min.js"/>"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
             integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
@@ -25,35 +26,24 @@
     <script src="<c:url value="/resources/js/controller/productCtrl.js"/>"></script>
     <script src="<c:url value="/resources/js/service/product.js"/>"></script>
     <script src="<c:url value="/resources/js/controller/addProductCtrl.js"/>"></script>
+    <script src="<c:url value="/resources/js/controller/productDetailCtrl.js"/>"></script>
+
+
+
 
 
 </head>
 <body ng-app="myApp">
 <h2>Hello World!</h2>
 
-<div>
-    <div>
-        <button class="btn btn-default"><a ui-sref="addProduct">Add product</a></button>
-    </div>
-    <div ng-controller="productCtrl">
+<div class="container" ng-cloak>
+    <div ng-include="'resources/js/views/header.jsp'"></div>
 
-        <div>
-            <table class="table table-bordered" id="tableProduct">
-                <tr style="text-align: center">
-                    <td>Id</td>
-                    <td>Product</td>
-                    <td>Price</td>
-                </tr>
-                <tr ng-repeat="product in products">
-                    <td>{{product.productId}}</td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.price}}</td>
-                </tr>
-            </table>
+    <div class="row">
+        <div class="ui-view-container">
+            <div ui-view></div>
         </div>
-
     </div>
-    <div ui-view></div>
 </div>
 
 

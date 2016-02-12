@@ -9,11 +9,8 @@ import com.gestiune.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -129,6 +126,14 @@ public class ProductController {
         Product product = service.findById(productId);
         return product;
 
+    }
+
+    @RequestMapping(value = "/deleteProduct/{name}", method = RequestMethod.DELETE)
+    @ResponseBody
+  boolean deleteProduct(  @PathVariable("name") String name) {
+ service.deleteProductByName(name);
+
+        return true ;
     }
 
 

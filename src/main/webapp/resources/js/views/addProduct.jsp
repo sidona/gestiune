@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<div ng-controller="addProductCtrl">
+<div ng-controller="addProductCtrl" style="width: 600px">
     <form class="form-horizontal" ng-submit="addProduct()">
         <div class="form-group">
             <label for="name" class="col-sm-2 control-label">Name</label>

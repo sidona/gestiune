@@ -36,6 +36,11 @@ public class ProductServiceImpl implements ProductService{
         dao.saveProduct(product);
     }
 
+    public void deleteProductByName(String name) {
+        dao.deleteProductByName(name);
+    }
+
+
     public List<Product> findAllProducts() {
         return dao.findAllProducts();
     }
