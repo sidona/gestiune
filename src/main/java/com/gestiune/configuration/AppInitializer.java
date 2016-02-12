@@ -15,6 +15,8 @@ public class AppInitializer implements WebApplicationInitializer {
 
     public void onStartup(ServletContext container) throws ServletException {
 
+       container.addFilter("CorsFilter", new CorsFilter());
+
         AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
         ctx.register(AppConfig.class);
         ctx.setServletContext(container);
