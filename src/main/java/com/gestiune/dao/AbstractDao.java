@@ -1,8 +1,6 @@
 package com.gestiune.dao;
 
-import com.gestiune.model.Customer;
 import org.hibernate.Criteria;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;

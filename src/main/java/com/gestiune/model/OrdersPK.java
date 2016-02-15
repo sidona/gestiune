@@ -1,20 +1,28 @@
 package com.gestiune.model;
 
-import javax.persistence.Basic;
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * Created by sdonose on 2/15/2016.
  */
-@Entity
-public class Customer {
+public class OrdersPK implements Serializable {
+    private int orderId;
     private int customerId;
-    private String name;
 
+    @Column(name = "order_id")
     @Id
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
     @Column(name = "customer_id")
+    @Id
     public int getCustomerId() {
         return customerId;
     }
@@ -23,33 +31,23 @@ public class Customer {
         this.customerId = customerId;
     }
 
-    @Basic
-    @Column(name = "name")
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Customer customer = (Customer) o;
+        OrdersPK ordersPK = (OrdersPK) o;
 
-        if (customerId != customer.customerId) return false;
-        if (name != null ? !name.equals(customer.name) : customer.name != null) return false;
+        if (orderId != ordersPK.orderId) return false;
+        if (customerId != ordersPK.customerId) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = customerId;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        int result = orderId;
+        result = 31 * result + customerId;
         return result;
     }
 }

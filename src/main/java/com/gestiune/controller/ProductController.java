@@ -1,7 +1,7 @@
 package com.gestiune.controller;
 
 import com.gestiune.model.Customer;
-import com.gestiune.model.Order;
+import com.gestiune.model.Orders;
 import com.gestiune.model.Product;
 import com.gestiune.service.CustomerService;
 import com.gestiune.service.OrdersService;
@@ -34,16 +34,16 @@ public class ProductController {
 
     @RequestMapping(value = "/getAllOrders", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<Order> listOrders(ModelMap model) {
-        List<Order> orders = ordersService.findAllOrders();
+    public List<Orders> listOrders(ModelMap model) {
+        List<Orders> orders = ordersService.findAllOrders();
         model.addAttribute("orders", orders);
         return ordersService.findAllOrders();
     }
 
     @RequestMapping(value = "/getAllOrdersByProduct", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<Order> listOrdersByProduct(ModelMap model) {
-        List<Order> orders = ordersService.findOrderByProduct();
+    public List<Orders> listOrdersByProduct(ModelMap model) {
+        List<Orders> orders = ordersService.findOrderByProduct();
         model.addAttribute("orders", orders);
         return ordersService.findOrderByProduct();
     }
@@ -51,8 +51,8 @@ public class ProductController {
 
     @RequestMapping(value = "/addNewOrder", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
-    boolean saveOrder(@RequestBody Order order) {
-        this.ordersService.saveOrder(order);
+    boolean saveOrder(@RequestBody Orders orders) {
+        this.ordersService.saveOrder(orders);
         return true;
     }
 

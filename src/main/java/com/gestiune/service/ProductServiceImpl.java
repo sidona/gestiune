@@ -2,14 +2,11 @@ package com.gestiune.service;
 
 import com.gestiune.dao.ProductDao;
 import com.gestiune.model.Product;
-import org.hibernate.validator.internal.engine.ValidatorFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
-import javax.validation.Validation;
-import javax.validation.ValidatorFactory;
 import java.util.List;
 
 /**

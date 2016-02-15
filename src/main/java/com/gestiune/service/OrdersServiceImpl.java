@@ -1,7 +1,7 @@
 package com.gestiune.service;
 
 import com.gestiune.dao.OrdersDao;
-import com.gestiune.model.Order;
+import com.gestiune.model.Orders;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,15 +19,15 @@ public class OrdersServiceImpl implements OrdersService {
     @Autowired
     private OrdersDao dao;
 
-    public List<Order> findAllOrders() {
+    public List<Orders> findAllOrders() {
         return dao.findAllOrders();
     }
 
-    public void saveOrder(Order order) {
-        dao.saveOrder(order);
+    public void saveOrder(Orders orders) {
+        dao.saveOrder(orders);
     }
 
-    public List<Order> findOrderByProduct() {
+    public List<Orders> findOrderByProduct() {
         return dao.findOrderByProduct();
     }
 

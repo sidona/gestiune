@@ -1,6 +1,7 @@
 package com.gestiune.dao;
 
-import com.gestiune.model.Order;
+
+import com.gestiune.model.Orders;
 
 import java.util.List;
 
@@ -9,9 +10,9 @@ import java.util.List;
  */
 public interface OrdersDao {
 
-    List<Order> findAllOrders();
+    List<Orders> findAllOrders();
 
-    void saveOrder(Order order);
+    void saveOrder(Orders orders);
 
-    List<Order> findOrderByProduct();
+    List<Orders> findOrderByProduct();
 }

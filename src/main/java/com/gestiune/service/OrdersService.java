@@ -1,6 +1,6 @@
 package com.gestiune.service;
 
-import com.gestiune.model.Order;
+import com.gestiune.model.Orders;
 
 import java.util.List;
 
@@ -8,9 +8,9 @@ import java.util.List;
  * Created by sdonose on 2/8/2016.
  */
 public interface OrdersService {
-    List<Order> findAllOrders();
+    List<Orders> findAllOrders();
 
-    void saveOrder(Order order);
+    void saveOrder(Orders orders);
 
-    List<Order> findOrderByProduct();
+    List<Orders> findOrderByProduct();
 }

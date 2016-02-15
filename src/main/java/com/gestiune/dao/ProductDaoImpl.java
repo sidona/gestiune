@@ -2,15 +2,10 @@ package com.gestiune.dao;
 
 import com.gestiune.model.Product;
 import org.hibernate.*;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.*;
-import javax.persistence.Query;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
