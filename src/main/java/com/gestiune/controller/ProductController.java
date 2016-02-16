@@ -33,8 +33,6 @@ public class ProductController {
 
     }
 
-
-
     @RequestMapping(value = "/newProduct", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     boolean saveProduct(@RequestBody Product product) {

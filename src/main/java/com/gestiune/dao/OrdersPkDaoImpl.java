@@ -33,4 +33,5 @@ public class OrdersPkDaoImpl extends AbstractDao<Integer, OrdersPK> implements O
                "  group by o.order_id\n").list();
         return list;
     }
+
 }

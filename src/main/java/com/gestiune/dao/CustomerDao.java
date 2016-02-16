@@ -15,5 +15,5 @@ public interface CustomerDao {
 
     List<Customer> findAll();
 
-    List<Customer> findAllCustomer();
+
 }

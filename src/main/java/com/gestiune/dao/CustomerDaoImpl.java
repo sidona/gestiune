@@ -31,10 +31,5 @@ public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements C
         return (List<Customer>) criteria.list();
     }
 
-    public List<Customer> findAllCustomer() {
 
-        List<Customer> list=(List<Customer>)sessionFactory.getCurrentSession().createQuery(String.format("FROM Order o JOIN o.customer c ")).list();
-         return list;
-
-    }
 }

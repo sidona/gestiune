@@ -27,9 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
         return dao.findAll();
     }
 
-    public List<Customer> findAllCustomer() {
-        return dao.findAllCustomer();
-    }
+
 
     public void saveCustomer(Customer customer) {
         dao.saveCustomer(customer);

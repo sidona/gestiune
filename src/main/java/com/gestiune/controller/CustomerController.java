@@ -37,13 +37,6 @@ public class CustomerController {
     }
 
 
-    @RequestMapping(value = "/getAllCus", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public List<Customer> listCustomerAll(ModelMap model) {
-        List<Customer> customers = serviceCustomer.findAllCustomer();
-        model.addAttribute("customer", customers);
-        return serviceCustomer.findAllCustomer();
-    }
 
     @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
