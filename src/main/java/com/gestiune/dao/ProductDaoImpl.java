@@ -33,13 +33,6 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
         return (List<Product>) criteria.list();
     }
 
-    public List<Product> findAllProductOrder() {
-        List<Product> list=(List<Product>)sessionFactory.getCurrentSession().createSQLQuery(String.format("SELECT * \n" +
-                "FROM product p \n" +
-                "\tINNER JOIN order_product op ON ( p.product_id = op.product_id  )  ")).addEntity(Product.class).list();
-
-        return list;
-    }
 
     public Product findProductByName(String name) {
         Criteria criteria = createEntityCriteria();

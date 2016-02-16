@@ -42,9 +42,7 @@ public class ProductServiceImpl implements ProductService{
         return dao.findAllProducts();
     }
 
-    public List<Product> findAllProductOrder() {
-        return dao.findAllProductOrder();
-    }
+
 
     public Product findProductByName(String name) {
         return dao.findProductByName(name);

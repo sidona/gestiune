@@ -15,7 +15,7 @@ public interface ProductService {
 
     void deleteProductByName(String name);
     List<Product> findAllProducts();
-    List<Product> findAllProductOrder();
+
 
     Product findProductByName(String name);
 }
