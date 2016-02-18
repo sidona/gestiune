@@ -15,8 +15,7 @@ public interface ProductDao {
 
     List<Product> findAllProducts();
 
-
     Product findProductByName(String name);
 
-    void deleteProductByName(String name);
+    void deleteProductById(int productId);
 }

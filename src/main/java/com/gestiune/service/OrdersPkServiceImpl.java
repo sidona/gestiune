@@ -21,4 +21,8 @@ public class OrdersPkServiceImpl implements OrdersPkService {
     public List<OrdersPK> findAllOrdersPK() {
         return dao.findAllOrdersPK();
     }
+
+    public OrdersPK findById(int orderId) {
+        return dao.findById(orderId);
+    }
 }

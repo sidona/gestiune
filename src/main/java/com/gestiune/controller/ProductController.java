@@ -49,17 +49,13 @@ public class ProductController {
 
     }
 
-    @RequestMapping(value = "/deleteProduct/{name}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/deleteProduct/{productId}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-  boolean deleteProduct(  @PathVariable("name") String name) {
- service.deleteProductByName(name);
+    boolean deleteProduct(@PathVariable int productId) {
+        this.service.deleteProductById(productId);
 
-        return true ;
+        return true;
     }
-
-
-
-
 
 
 }

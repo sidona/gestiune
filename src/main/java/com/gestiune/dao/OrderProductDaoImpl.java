@@ -1,6 +1,5 @@
 package com.gestiune.dao;
 
-import com.gestiune.model.OrderProduct;
 import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 

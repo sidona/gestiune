@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" version="2.0">
-<persistence-unit name="gestiune_Spring">
-    <class>com.gestiune.model.Customer</class>
-    <class>com.gestiune.model.OrderProduct</class>
-    <class>com.gestiune.model.Orders</class>
-    <class>com.gestiune.model.Product</class>
+    <persistence-unit name="gestiune_Spring">
+        <class>com.gestiune.model.Customer</class>
+        <class>com.gestiune.model.OrderProduct</class>
+        <class>com.gestiune.model.Orders</class>
+        <class>com.gestiune.model.Product</class>
 
-    <properties>
-    <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-    <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gestiune" />
-    <property name="javax.persistence.jdbc.user" value="root" />
-    <property name="javax.persistence.jdbc.password" value="root" />
+        <properties>
+            <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gestiune"/>
+            <property name="javax.persistence.jdbc.user" value="root"/>
+            <property name="javax.persistence.jdbc.password" value="root"/>
+            <property name="hibernate.ejb.event.post-insert"
+                      value="net.jeffrey.hibernate.history.HistoryListener"/>
+            <property name="hibernate.ejb.event.post-update"
+                      value="org.hibernate.ejb.event.EJB3PostUpdateEventListener,org.hibernate.envers.event.AuditEventListener"/>
+            <property name="hibernate.ejb.event.post-delete"
+                      value="org.hibernate.ejb.event.EJB3PostDeleteEventListener,org.hibernate.envers.event.AuditEventListener"/>
+            <property name="hibernate.ejb.event.pre-collection-update"
+                      value="org.hibernate.envers.event.AuditEventListener"/>
+            <property name="hibernate.ejb.event.pre-collection-remove"
+                      value="org.hibernate.envers.event.AuditEventListener"/>
+            <property name="hibernate.ejb.event.post-collection-recreate"
+                      value="org.hibernate.envers.event.AuditEventListener"/>
 
-    <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gestiune"></property>
-    <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
-    <property name="hibernate.show_sql" value="true"></property>
-    <property name="hibernate.format_sql" value="true"></property>
-    <property name="hbm2ddl.auto" value="update"></property>
-        <property name="hibernate.connection.username"/>
-        <property name="hibernate.connection.password"/>
-    </properties>
 
-</persistence-unit>
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/gestiune"></property>
+            <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
+            <property name="hibernate.show_sql" value="true"></property>
+            <property name="hibernate.format_sql" value="true"></property>
+            <property name="hbm2ddl.auto" value="update"></property>
+            <property name="hibernate.connection.username"/>
+            <property name="hibernate.connection.password"/>
+        </properties>
+
+    </persistence-unit>
 </persistence>

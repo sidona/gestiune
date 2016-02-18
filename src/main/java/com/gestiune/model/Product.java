@@ -9,6 +9,7 @@ import javax.persistence.Id;
  * Created by sdonose on 2/15/2016.
  */
 @Entity
+
 public class Product {
     private int productId;
     private String name;

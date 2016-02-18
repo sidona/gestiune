@@ -1,7 +1,5 @@
 package com.gestiune.service;
 
-import com.gestiune.model.OrderProduct;
-
 import java.util.List;
 
 /**
@@ -9,4 +7,6 @@ import java.util.List;
  */
 public interface OrderProductService {
     List<OrderProduct> findAllOrderProduct();
+
+    void saveProduct(OrderProduct orderProduct);
 }

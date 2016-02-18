@@ -36,63 +36,66 @@
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <index id="12" parent="3" name="FK_PRODUCT">
+      <column id="12" parent="3" name="price">
+        <data-type>double</data-type>
+      </column>
+      <index id="13" parent="3" name="FK_PRODUCT">
         <columns>product_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="13" parent="3" name="PRIMARY">
+      <key id="14" parent="3" name="PRIMARY">
         <columns>order_id
 product_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="14" parent="3" name="FK_ORDERS">
+      <foreign-key id="15" parent="3" name="FK_ORDERS">
         <columns>order_id</columns>
         <ref-key>gestiune.orders(order_id)</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <foreign-key id="15" parent="3" name="FK_PRODUCT">
+      <foreign-key id="16" parent="3" name="FK_PRODUCT">
         <columns>product_id</columns>
         <ref-key>~.product.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="16" parent="4" name="order_id">
+      <column id="17" parent="4" name="order_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="17" parent="4" name="customer_id">
+      <column id="18" parent="4" name="customer_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <index id="18" parent="4" name="FK_CUSTOMER">
+      <index id="19" parent="4" name="FK_CUSTOMER">
         <columns>customer_id</columns>
         <desc-columns></desc-columns>
       </index>
-      <key id="19" parent="4" name="PRIMARY">
+      <key id="20" parent="4" name="PRIMARY">
         <columns>order_id
 customer_id</columns>
         <primary>1</primary>
       </key>
-      <foreign-key id="20" parent="4" name="FK_CUSTOMER">
+      <foreign-key id="21" parent="4" name="FK_CUSTOMER">
         <columns>customer_id</columns>
         <ref-key>~.customer.PRIMARY</ref-key>
         <cascade-update-rule>restrict</cascade-update-rule>
         <cascade-delete-rule>restrict</cascade-delete-rule>
       </foreign-key>
-      <column id="21" parent="5" name="product_id">
+      <column id="22" parent="5" name="product_id">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="22" parent="5" name="name">
+      <column id="23" parent="5" name="name">
         <mandatory>1</mandatory>
         <data-type>varchar(30)</data-type>
       </column>
-      <column id="23" parent="5" name="price">
+      <column id="24" parent="5" name="price">
         <mandatory>1</mandatory>
         <data-type>double</data-type>
       </column>
-      <key id="24" parent="5" name="PRIMARY">
+      <key id="25" parent="5" name="PRIMARY">
         <columns>product_id</columns>
         <primary>1</primary>
       </key>

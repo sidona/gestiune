@@ -1,6 +1,5 @@
 package com.gestiune.dao;
 
-import com.gestiune.model.Orders;
 import com.gestiune.model.OrdersPK;
 
 import java.util.List;
@@ -10,4 +9,6 @@ import java.util.List;
  */
 public interface OrdersPkDao {
     List<OrdersPK> findAllOrdersPK();
+
+   public OrdersPK findById(int orderId);
 }

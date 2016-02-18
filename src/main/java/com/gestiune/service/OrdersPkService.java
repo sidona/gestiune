@@ -9,4 +9,6 @@ import java.util.List;
  */
 public interface OrdersPkService {
     List<OrdersPK> findAllOrdersPK();
+
+    OrdersPK findById(int orderId);
 }

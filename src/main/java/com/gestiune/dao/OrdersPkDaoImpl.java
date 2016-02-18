@@ -1,7 +1,6 @@
 package com.gestiune.dao;
 
 import com.gestiune.model.OrdersPK;
-import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -32,6 +31,13 @@ public class OrdersPkDaoImpl extends AbstractDao<Integer, OrdersPK> implements O
                "  on op.product_id=p.product_id\n" +
                "  group by o.order_id\n").list();
         return list;
+    }
+
+    public OrdersPK findById(int orderId) {
+//       Criteria criteria=createEntityCriteria();
+//        criteria.add(Restrictions.eq("orderId",orderId));
+//        return (List<OrdersPK>) criteria.list();
+        return (OrdersPK) sessionFactory.getCurrentSession().get(OrdersPK.class,orderId);
     }
 
 }

@@ -2,10 +2,12 @@ package com.gestiune.dao;
 
 import com.gestiune.model.Product;
 import org.hibernate.*;
+import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -19,6 +21,8 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
 
     @Autowired
     private SessionFactory sessionFactory;
+
+
 
     public Product findById(int productId) {
         return getByKey(productId);
@@ -34,16 +38,20 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
     }
 
 
+
+
     public Product findProductByName(String name) {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("name", name));
         return (Product) criteria.uniqueResult();
     }
 
-    public void deleteProductByName(String name) {
-        SQLQuery query=getSession().createSQLQuery(String.format("delete FROM product where name=:name"));
-        query.setParameter("name",name);
-        query.executeUpdate();
+    public void deleteProductById(int productId) {
+        Query query=sessionFactory.getCurrentSession().createQuery("delete Product where productId= :productId");
+        query.setParameter("productId",productId);
+
+        int result =query.executeUpdate();
+
     }
 }
 

@@ -1,6 +1,5 @@
 package com.gestiune.controller;
 
-import com.gestiune.model.OrderProduct;
 import com.gestiune.model.OrderProductPK;
 import com.gestiune.service.OrderProductPkService;
 import com.gestiune.service.OrderProductService;
@@ -42,6 +41,7 @@ public class OrderProductController {
         model.addAttribute("orders", orders);
         return orderProductPkService.findAllProductOrder();
     }
+
 
 
 }
