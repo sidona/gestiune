@@ -1,48 +1,37 @@
 package com.gestiune.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 /**
- * Created by sdonose on 2/15/2016.
+ * Created by sdonose on 2/21/2016.
  */
 @Entity
-
 public class Product {
-    private int productId;
+    private int id;
     private String name;
-    private double price;
+    private Set<ProductEntry> productEntry;
 
     @Id
-    @Column(name = "product_id")
-    public int getProductId() {
-        return productId;
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 30)
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Basic
-    @Column(name = "price")
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
     }
 
     @Override
@@ -52,8 +41,7 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (productId != product.productId) return false;
-        if (Double.compare(product.price, price) != 0) return false;
+        if (id != product.id) return false;
         if (name != null ? !name.equals(product.name) : product.name != null) return false;
 
         return true;
@@ -61,12 +49,18 @@ public class Product {
 
     @Override
     public int hashCode() {
-        int result;
-        long temp;
-        result = productId;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        temp = Double.doubleToLongBits(price);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
         return result;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "products")
+    @JsonIgnore
+    public Set<ProductEntry> getProductEntry() {
+        return productEntry;
+    }
+
+    public void setProductEntry(Set<ProductEntry> productEntry) {
+        this.productEntry = productEntry;
     }
 }

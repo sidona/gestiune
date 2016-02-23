@@ -7,7 +7,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -23,6 +22,13 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
     private SessionFactory sessionFactory;
 
 
+    public List<Product> findByIdDetail(int id) {
+    List<Product> list=sessionFactory.getCurrentSession()
+            .createQuery("select p.name, pe.priceUnit,pe.quantity,pe.dateProduction from Product p inner join p.productEntry pe where p.id=:id")
+            .setInteger("id",id)
+            .list();
+        return list;
+    }
 
     public Product findById(int productId) {
         return getByKey(productId);
@@ -34,10 +40,23 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
 
     public List<Product> findAllProducts() {
         Criteria criteria = createEntityCriteria();
+        criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);//To avoid duplicates.
         return (List<Product>) criteria.list();
     }
 
+    public List<Product> findAllProduct() {
+        List<Product> products = sessionFactory.getCurrentSession()
+                .createQuery("select p.name, pe.priceUnit,pe.quantity,pe.dateProduction from Product p inner join p.productEntry pe")
+                .list();
 
+        return products;
+    }
+
+
+//    public List<Product> findAllProducts() {
+//       List<Product>list=sessionFactory.getCurrentSession().createQuery("select p.name, pp.price from Product p inner join p.priceProduct pp").list();
+//    return list;
+//    }
 
 
     public Product findProductByName(String name) {
@@ -46,11 +65,9 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
         return (Product) criteria.uniqueResult();
     }
 
-    public void deleteProductById(int productId) {
-        Query query=sessionFactory.getCurrentSession().createQuery("delete Product where productId= :productId");
-        query.setParameter("productId",productId);
-
-        int result =query.executeUpdate();
+    public void deleteProductById(int id) {
+        Query query = sessionFactory.getCurrentSession().createQuery("delete from Product where id=:id");
+        query.setInteger("id", id).executeUpdate();
 
     }
 }

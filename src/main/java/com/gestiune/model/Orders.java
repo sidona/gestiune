@@ -1,31 +1,32 @@
 package com.gestiune.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.IdClass;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 /**
- * Created by sdonose on 2/15/2016.
+ * Created by sdonose on 2/21/2016.
  */
 @Entity
-@IdClass(OrdersPK.class)
 public class Orders {
-    private int orderId;
+    private int id;
     private int customerId;
+    private Customer customer;
+    private Set<OrderProduct> orderProduct;
 
     @Id
-    @Column(name = "order_id")
-    public int getOrderId() {
-        return orderId;
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
     }
 
-    public void setOrderId(int orderId) {
-        this.orderId = orderId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    @Id
-    @Column(name = "customer_id")
+    @Basic
+    @Column(name = "customer_id", nullable = false)
     public int getCustomerId() {
         return customerId;
     }
@@ -41,7 +42,7 @@ public class Orders {
 
         Orders orders = (Orders) o;
 
-        if (orderId != orders.orderId) return false;
+        if (id != orders.id) return false;
         if (customerId != orders.customerId) return false;
 
         return true;
@@ -49,8 +50,29 @@ public class Orders {
 
     @Override
     public int hashCode() {
-        int result = orderId;
+        int result = id;
         result = 31 * result + customerId;
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
+    @JsonIgnore
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "order")
+    @JsonIgnore
+    public Set<OrderProduct> getOrderProduct() {
+        return orderProduct;
+    }
+
+    public void setOrderProduct(Set<OrderProduct> orderProduct) {
+        this.orderProduct = orderProduct;
     }
 }

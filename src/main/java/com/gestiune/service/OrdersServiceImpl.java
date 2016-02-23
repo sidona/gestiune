@@ -27,8 +27,8 @@ public class OrdersServiceImpl implements OrdersService {
         dao.saveOrder(orders);
     }
 
-    public List<Orders> findOrderByProduct() {
-        return dao.findOrderByProduct();
+    public List<Orders> findOrderById(int id) {
+        return dao.findOrderById(id);
     }
 
 

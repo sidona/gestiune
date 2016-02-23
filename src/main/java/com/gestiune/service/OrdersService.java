@@ -12,5 +12,5 @@ public interface OrdersService {
 
     void saveOrder(Orders orders);
 
-    List<Orders> findOrderByProduct();
+    List<Orders> findOrderById(int id);
 }

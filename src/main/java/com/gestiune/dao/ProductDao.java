@@ -9,13 +9,17 @@ import java.util.List;
  */
 public interface ProductDao {
 
-   Product findById(int productId);
+    Product findById(int productId);
 
     void saveProduct(Product product);
 
     List<Product> findAllProducts();
 
+    List<Product> findByIdDetail(int id);
+
+    List<Product> findAllProduct();
+
     Product findProductByName(String name);
 
-    void deleteProductById(int productId);
+    void deleteProductById(int id);
 }

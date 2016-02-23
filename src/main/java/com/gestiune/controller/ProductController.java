@@ -22,7 +22,7 @@ public class ProductController {
 
 
 //Product
-
+//afiseaza nume si pret
     @RequestMapping(value = "/getAllProduct", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Product> listProduct(ModelMap model) {
@@ -30,6 +30,15 @@ public class ProductController {
         model.addAttribute("product", products);
         System.out.println("product" + products.getClass());
         return service.findAllProducts();
+
+    }
+    @RequestMapping(value = "/getListProduct", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public List<Product> listAllProduct(ModelMap model) {
+        List<Product> products = service.findAllProduct();
+        model.addAttribute("product", products);
+        System.out.println("product" + products.getClass());
+        return service.findAllProduct();
 
     }
 
@@ -49,10 +58,18 @@ public class ProductController {
 
     }
 
-    @RequestMapping(value = "/deleteProduct/{productId}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/productList/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    boolean deleteProduct(@PathVariable int productId) {
-        this.service.deleteProductById(productId);
+    public List<Product> productDetailId(@PathVariable int id) {
+        List<Product> product = service.findByIdDetail(id);
+        return product;
+
+    }
+
+    @RequestMapping(value = "/deleteProduct/{id}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    boolean deleteProduct(@PathVariable int id) {
+        this.service.deleteProductById(id);
 
         return true;
     }

@@ -20,7 +20,7 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement
-@ComponentScan({ "com.gestiune.configuration" })
+@ComponentScan({ "com.gestiune" })
 @PropertySource(value = { "classpath:application.properties" })
 
 public class HibernateConfiguration {

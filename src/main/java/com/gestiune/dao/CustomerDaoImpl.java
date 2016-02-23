@@ -3,7 +3,6 @@ package com.gestiune.dao;
 import com.gestiune.model.Customer;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.hibernate.Criteria;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -25,11 +24,18 @@ public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements C
         persist(customer);
     }
 
+
+
     public List<Customer> findAll() {
-        Criteria criteria = createEntityCriteria();
-        System.out.println("CustomerDaoImpl.findAll"+criteria.list());
-        return (List<Customer>) criteria.list();
+        List<Customer>list=sessionFactory.getCurrentSession().createQuery("from Customer ").list();
+        return list;
     }
+
+//    public List<Customer> findAll() {
+//        Criteria criteria = createEntityCriteria();
+//        System.out.println("CustomerDaoImpl.findAll"+criteria.list());
+//        return (List<Customer>) criteria.list();
+//    }
 
 
 }

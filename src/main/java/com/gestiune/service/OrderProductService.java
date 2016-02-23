@@ -1,5 +1,7 @@
 package com.gestiune.service;
 
+import com.gestiune.model.OrderProduct;
+
 import java.util.List;
 
 /**

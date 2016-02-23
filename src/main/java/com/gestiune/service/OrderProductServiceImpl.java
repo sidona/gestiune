@@ -1,6 +1,7 @@
 package com.gestiune.service;
 
 import com.gestiune.dao.OrderProductDao;
+import com.gestiune.model.OrderProduct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

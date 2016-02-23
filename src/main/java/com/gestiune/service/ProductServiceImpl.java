@@ -5,7 +5,6 @@ import com.gestiune.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Validator;
 
 import java.util.List;
 
@@ -20,9 +19,6 @@ public class ProductServiceImpl implements ProductService{
     @Autowired
     private ProductDao dao;
 
-    @Autowired
-
-    private Validator validator;
 
 
     public Product findById(int productId) {
@@ -33,13 +29,21 @@ public class ProductServiceImpl implements ProductService{
         dao.saveProduct(product);
     }
 
-    public void deleteProductById(int productId) {
-        dao.deleteProductById(productId);
+    public void deleteProductById(int id) {
+        dao.deleteProductById(id);
     }
 
 
     public List<Product> findAllProducts() {
         return dao.findAllProducts();
+    }
+
+    public List<Product> findAllProduct() {
+        return dao.findAllProduct();
+    }
+
+    public List<Product> findByIdDetail(int id) {
+        return dao.findByIdDetail(id);
     }
 
     public Product findProductByName(String name) {

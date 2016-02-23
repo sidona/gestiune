@@ -1,7 +1,6 @@
 package com.gestiune.controller;
 
-import com.gestiune.model.OrderProductPK;
-import com.gestiune.service.OrderProductPkService;
+import com.gestiune.model.OrderProduct;
 import com.gestiune.service.OrderProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,8 +21,7 @@ public class OrderProductController {
     @Autowired
     public OrderProductService orderProductService;
 
-    @Autowired
-    public OrderProductPkService orderProductPkService;
+
 
     @RequestMapping(value = "/getAllOrderProduct", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
@@ -34,13 +32,7 @@ public class OrderProductController {
     }
 
 
-    @RequestMapping(value = "/getAllProductOrderPk", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public List<OrderProductPK> listProductOrder(ModelMap model) {
-        List<OrderProductPK> orders = orderProductPkService.findAllProductOrder();
-        model.addAttribute("orders", orders);
-        return orderProductPkService.findAllProductOrder();
-    }
+
 
 
 

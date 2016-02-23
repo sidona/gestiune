@@ -1,21 +1,37 @@
 package com.gestiune.model;
 
+import org.codehaus.jackson.annotate.JsonIgnore;
+import org.hibernate.annotations.Formula;
+
 import javax.persistence.*;
+import java.util.Set;
 
 /**
- * Created by sdonose on 2/18/2016.
+ * Created by sdonose on 2/21/2016.
  */
 @Entity
-@Table(name = "order_product", schema = "gestiune", catalog = "")
-@IdClass(OrderProductPK.class)
+@Table(name = "order_product", schema = "gestiune")
 public class OrderProduct {
+    private int id;
     private int orderId;
-    private int productId;
+    private int entryId;
     private int quantity;
-    private Double price;
+    private Orders order;
+    private ProductEntry entryProduct;
+    private Double totalProduct;
 
     @Id
-    @Column(name = "order_id")
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    @Basic
+    @Column(name = "order_id", nullable = false)
     public int getOrderId() {
         return orderId;
     }
@@ -24,34 +40,24 @@ public class OrderProduct {
         this.orderId = orderId;
     }
 
-    @Id
-    @Column(name = "product_id")
-    public int getProductId() {
-        return productId;
+    @Basic
+    @Column(name = "entry_id", nullable = false)
+    public int getEntryId() {
+        return entryId;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setEntryId(int entryId) {
+        this.entryId = entryId;
     }
 
     @Basic
-    @Column(name = "quantity")
+    @Column(name = "quantity", nullable = false)
     public int getQuantity() {
         return quantity;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
-    }
-
-    @Basic
-    @Column(name = "price")
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     @Override
@@ -61,20 +67,58 @@ public class OrderProduct {
 
         OrderProduct that = (OrderProduct) o;
 
+        if (id != that.id) return false;
         if (orderId != that.orderId) return false;
-        if (productId != that.productId) return false;
+        if (entryId != that.entryId) return false;
         if (quantity != that.quantity) return false;
-        if (price != null ? !price.equals(that.price) : that.price != null) return false;
+        if (!order.equals(that.order)) return false;
+        if (!entryProduct.equals(that.entryProduct)) return false;
+        return totalProduct.equals(that.totalProduct);
 
-        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = orderId;
-        result = 31 * result + productId;
+        int result = id;
+        result = 31 * result + orderId;
+        result = 31 * result + entryId;
         result = 31 * result + quantity;
-        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + order.hashCode();
+        result = 31 * result + entryProduct.hashCode();
+        result = 31 * result + totalProduct.hashCode();
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
+    @JsonIgnore
+    public Orders getOrder() {
+        return order;
+    }
+
+    public void setOrder(Orders order) {
+        this.order = order;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "entry_id", referencedColumnName = "id", nullable = false,updatable = false,insertable = false)
+    @JsonIgnore
+    public ProductEntry getEntryProduct() {
+        return entryProduct;
+    }
+
+    public void setEntryProduct(ProductEntry entryProduct) {
+        this.entryProduct = entryProduct;
+    }
+
+    @Basic
+    @Column(name = "total_product", nullable = true, precision = 0)
+    @Formula("select op.quantity*pe.priceUnit from OrderProduct op inner join op.entryProduct pe")
+    public Double getTotalProduct() {
+        return totalProduct;
+    }
+
+    public void setTotalProduct(Double totalProduct) {
+        this.totalProduct = totalProduct;
     }
 }

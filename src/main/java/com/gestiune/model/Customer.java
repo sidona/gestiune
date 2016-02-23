@@ -1,30 +1,31 @@
 package com.gestiune.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
+import javax.persistence.*;
+import java.util.Set;
 
 /**
- * Created by sdonose on 2/15/2016.
+ * Created by sdonose on 2/21/2016.
  */
 @Entity
 public class Customer {
-    private int customerId;
+    private int id;
     private String name;
+    private Set<Orders> orders;
 
     @Id
-    @Column(name = "customer_id")
-    public int getCustomerId() {
-        return customerId;
+    @Column(name = "id", nullable = false)
+    public int getId() {
+        return id;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Basic
-    @Column(name = "name")
+    @Column(name = "name", nullable = false, length = 30)
     public String getName() {
         return name;
     }
@@ -40,7 +41,7 @@ public class Customer {
 
         Customer customer = (Customer) o;
 
-        if (customerId != customer.customerId) return false;
+        if (id != customer.id) return false;
         if (name != null ? !name.equals(customer.name) : customer.name != null) return false;
 
         return true;
@@ -48,8 +49,18 @@ public class Customer {
 
     @Override
     public int hashCode() {
-        int result = customerId;
+        int result = id;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "customer")
+    @JsonIgnore
+    public Set<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Orders> orders) {
+        this.orders = orders;
     }
 }
