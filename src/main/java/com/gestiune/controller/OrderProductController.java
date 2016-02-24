@@ -25,10 +25,11 @@ public class OrderProductController {
 
     @RequestMapping(value = "/getAllOrderProduct", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<OrderProduct> listOrderProduct(ModelMap model) {
+   public List<OrderProduct> listOrderProduct(ModelMap model) {
         List<OrderProduct> orders = orderProductService.findAllOrderProduct();
         model.addAttribute("orders", orders);
-        return orderProductService.findAllOrderProduct();
+
+        return orders;
     }
 
 

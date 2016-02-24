@@ -25,11 +25,17 @@
 
             </tr>
             <tr ng-repeat="product in products">
-                <td>{{product.productId}}</td>
+                <td ng-repeat="prod in products.0">{{prod}}</td>
                 <td><a ui-sref="productDetail({productId:product.productId})"> {{product.name}}</a></td>
                 <td>{{product.price}}</td>
 
             </tr>
+{{products}}
+            {{prod}}
+<div ng-repeat="p in products"> p==={{p[0]}}
+    <div ng-repeat="produ in p[1]"> snajsns {{produ}} </div>
+</div>
+
         </table>
     </div>
 

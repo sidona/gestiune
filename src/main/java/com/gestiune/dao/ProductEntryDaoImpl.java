@@ -31,9 +31,6 @@ public class ProductEntryDaoImpl extends AbstractDao<Integer,ProductEntry> imple
         persist(productEntity);
     }
 
-
-
-
     public List<ProductEntry> findAllProductsEntry() {
         List<ProductEntry> productEntries=sessionFactory.getCurrentSession().createQuery("from ProductEntry ").list();
         return productEntries;

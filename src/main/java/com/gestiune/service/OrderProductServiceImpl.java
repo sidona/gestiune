@@ -20,6 +20,7 @@ public class OrderProductServiceImpl implements OrderProductService{
 
 
     public List<OrderProduct> findAllOrderProduct() {
+
         return dao.findAllOrderProduct();
     }
 

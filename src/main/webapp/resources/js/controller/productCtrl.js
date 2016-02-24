@@ -4,9 +4,19 @@
 "use strict";
 angular.module('myApp')
     .controller('productCtrl', function ($scope, product) {
-        product.query(function (data) {
-            $scope.products = data;
+        //product.query(function (items,data) {
+        //    for(var i=0;i<items.length;i++){
+        //        $scope.products=data[i];
+        //    }
+
+        product.query(function(data){
+            $scope.products=data;
         })
+
+
+
+
+
 
         $scope.exportPdf = function () {
             var doc = new jsPDF();

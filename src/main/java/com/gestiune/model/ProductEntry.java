@@ -1,17 +1,23 @@
 package com.gestiune.model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.JoinFormula;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by sdonose on 2/21/2016.
  */
 @Entity
-@Table(name = "product_entry", schema = "gestiune", catalog = "")
-public class ProductEntry {
+@Table(name = "product_entry", schema = "gestiune")
+
+public class ProductEntry implements Serializable {
     private int id;
     private int productId;
     private double priceUnit;
@@ -19,7 +25,11 @@ public class ProductEntry {
     private Date dateProduction;
     private Set<OrderProduct> orderProducts;
     private Product products;
-    private Stock stock;
+    private Integer remainingStock;
+
+
+    public ProductEntry() {
+    }
 
     @Id
     @Column(name = "id", nullable = false)
@@ -68,6 +78,15 @@ public class ProductEntry {
     }
 
     public void setDateProduction(Date dateProduction) {
+        this.dateProduction = dateProduction;
+    }
+
+
+    public ProductEntry(int id, int productId, double priceUnit, int quantity, Date dateProduction) {
+        this.id = id;
+        this.productId = productId;
+        this.priceUnit = priceUnit;
+        this.quantity = quantity;
         this.dateProduction = dateProduction;
     }
 
@@ -122,13 +141,19 @@ public class ProductEntry {
         this.products = products;
     }
 
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "prodEntry")
-    @JsonIgnore
-    public Stock getStock() {
-        return stock;
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "remaining_stock", nullable = false)
+    //@Formula(value = "(select pe.quantity-op.quantity from ProductEntry pe inner join pe.orderProducts op)")
+    public Integer getRemainingStock() {
+        return remainingStock;
     }
 
-    public void setStock(Stock stock) {
-        this.stock = stock;
+    public void setRemainingStock(Integer remainingStock) {
+        this.remainingStock = remainingStock;
+        stockDetail();
+    }
+
+    public void stockDetail(){
+        this.remainingStock=this.quantity;
     }
 }

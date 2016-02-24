@@ -2,8 +2,10 @@ package com.gestiune.model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.hibernate.annotations.Formula;
+import org.hibernate.annotations.JoinFormula;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
@@ -11,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "order_product", schema = "gestiune")
-public class OrderProduct {
+public class OrderProduct implements Serializable {
     private int id;
     private int orderId;
     private int entryId;
@@ -77,6 +79,7 @@ public class OrderProduct {
 
     }
 
+
     @Override
     public int hashCode() {
         int result = id;
@@ -111,14 +114,18 @@ public class OrderProduct {
         this.entryProduct = entryProduct;
     }
 
-    @Basic
-    @Column(name = "total_product", nullable = true, precision = 0)
-    @Formula("select op.quantity*pe.priceUnit from OrderProduct op inner join op.entryProduct pe")
+    @Basic(fetch = FetchType.LAZY)
+    @Column(name = "total_product", nullable = false)
     public Double getTotalProduct() {
         return totalProduct;
     }
 
     public void setTotalProduct(Double totalProduct) {
         this.totalProduct = totalProduct;
+        updateTotal();
+    }
+
+    public void updateTotal(){
+        this.totalProduct=this.quantity*entryProduct.getPriceUnit();
     }
 }

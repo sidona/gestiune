@@ -7,7 +7,6 @@
         <class>com.gestiune.model.Orders</class>
         <class>com.gestiune.model.Product</class>
         <class>com.gestiune.model.ProductEntry</class>
-        <class>com.gestiune.model.Stock</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>

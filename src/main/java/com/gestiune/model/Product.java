@@ -3,13 +3,14 @@ package com.gestiune.model;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 /**
  * Created by sdonose on 2/21/2016.
  */
 @Entity
-public class Product {
+public class Product implements Serializable {
     private int id;
     private String name;
     private Set<ProductEntry> productEntry;

@@ -37,10 +37,10 @@ public class ProductEntryController {
         return true;
     }
 
-    @RequestMapping(value = "/productEntry/{productId}", method = RequestMethod.POST, consumes = "application/json")
+    @RequestMapping(value = "/productEntry", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
-    boolean saveProductId(@PathVariable int productId, @RequestBody double priceUnit, int quantity, Date dateProduction) {
-       this. productEntryService.saveProd(productId,priceUnit,quantity,dateProduction);
+    boolean saveProductId(@RequestBody int productId,@RequestBody double priceUnit, @RequestBody int quantity,@RequestBody Date dateProduction) {
+       this.productEntryService.saveProd(productId,priceUnit,quantity,dateProduction);
         return true;
 
     }
