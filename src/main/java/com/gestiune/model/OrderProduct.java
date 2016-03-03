@@ -22,6 +22,7 @@ public class OrderProduct implements Serializable {
     private ProductEntry entryProduct;
     private Double totalProduct;
 
+
     @Id
     @Column(name = "id", nullable = false)
     public int getId() {
@@ -86,7 +87,6 @@ public class OrderProduct implements Serializable {
         result = 31 * result + orderId;
         result = 31 * result + entryId;
         result = 31 * result + quantity;
-        result = 31 * result + order.hashCode();
         result = 31 * result + entryProduct.hashCode();
         result = 31 * result + totalProduct.hashCode();
         return result;

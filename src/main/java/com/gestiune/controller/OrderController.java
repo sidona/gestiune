@@ -29,10 +29,10 @@ public class OrderController {
         return ordersService.findAllOrders();
     }
 
-    @RequestMapping(value = "/getAllOrdersById/{id}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/getAllOrdersById/{entryId}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<Orders> listOrdersById(@PathVariable int id) {
-        List<Orders> orders = ordersService.findOrderById(id);
+    public List<Orders> listOrdersById(@PathVariable int entryId) {
+        List<Orders> orders = ordersService.findOrderById(entryId);
         return orders;
     }
 
@@ -43,7 +43,5 @@ public class OrderController {
         this.ordersService.saveOrder(orders);
         return true;
     }
-
-
 
 }

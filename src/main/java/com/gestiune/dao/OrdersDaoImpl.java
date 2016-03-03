@@ -20,7 +20,7 @@ public class OrdersDaoImpl extends AbstractDao<Integer, Orders> implements Order
     private SessionFactory sessionFactory;
 
     public List<Orders> findAllOrders() {
-        List<Orders>orderses=sessionFactory.getCurrentSession().createQuery(" select c.name,c.id, ord.id from Customer c inner join c.orders ord").list();
+        List<Orders>orderses=sessionFactory.getCurrentSession().createQuery("from Orders o inner join o.customer c").list();
         return orderses;
     }
 
@@ -41,10 +41,10 @@ public class OrdersDaoImpl extends AbstractDao<Integer, Orders> implements Order
         persist(orders);
     }
 
-    public List<Orders> findOrderById(int id) {
+    public List<Orders> findOrderById(int entryId) {
         List<Orders> orders=sessionFactory.getCurrentSession().createQuery("\n" +
                 "\n" +
-                "select op.id, op.quantity, o.id, c.name, c.id from OrderProduct op inner join op.order o inner join o.customer c where c.id=:id").setInteger("id",id).list();
+                "select op from OrderProduct as op inner join op.order as o inner join o.customer where op.entryId=:entryId").setInteger("entryId",entryId).list();
         return orders;
     }
 }

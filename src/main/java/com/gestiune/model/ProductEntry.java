@@ -8,6 +8,7 @@ import org.hibernate.annotations.JoinFormula;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -28,8 +29,7 @@ public class ProductEntry implements Serializable {
     private Integer remainingStock;
 
 
-    public ProductEntry() {
-    }
+
 
     @Id
     @Column(name = "id", nullable = false)
@@ -82,14 +82,6 @@ public class ProductEntry implements Serializable {
     }
 
 
-    public ProductEntry(int id, int productId, double priceUnit, int quantity, Date dateProduction) {
-        this.id = id;
-        this.productId = productId;
-        this.priceUnit = priceUnit;
-        this.quantity = quantity;
-        this.dateProduction = dateProduction;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,10 +93,10 @@ public class ProductEntry implements Serializable {
         if (productId != that.productId) return false;
         if (Double.compare(that.priceUnit, priceUnit) != 0) return false;
         if (quantity != that.quantity) return false;
-        if (dateProduction != null ? !dateProduction.equals(that.dateProduction) : that.dateProduction != null)
-            return false;
+        if (!dateProduction.equals(that.dateProduction)) return false;
+        if (!orderProducts.equals(that.orderProducts)) return false;
+        return products.equals(that.products) && remainingStock.equals(that.remainingStock);
 
-        return true;
     }
 
     @Override
@@ -116,7 +108,10 @@ public class ProductEntry implements Serializable {
         temp = Double.doubleToLongBits(priceUnit);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         result = 31 * result + quantity;
-        result = 31 * result + (dateProduction != null ? dateProduction.hashCode() : 0);
+        result = 31 * result + dateProduction.hashCode();
+        result = 31 * result + orderProducts.hashCode();
+        result = 31 * result + products.hashCode();
+        result = 31 * result + remainingStock.hashCode();
         return result;
     }
 
@@ -143,7 +138,6 @@ public class ProductEntry implements Serializable {
 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "remaining_stock", nullable = false)
-    //@Formula(value = "(select pe.quantity-op.quantity from ProductEntry pe inner join pe.orderProducts op)")
     public Integer getRemainingStock() {
         return remainingStock;
     }
@@ -154,6 +148,7 @@ public class ProductEntry implements Serializable {
     }
 
     public void stockDetail(){
-        this.remainingStock=this.quantity;
+
+            remainingStock=quantity;
     }
 }

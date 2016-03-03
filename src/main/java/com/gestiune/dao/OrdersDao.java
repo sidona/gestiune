@@ -16,5 +16,5 @@ public interface OrdersDao {
 
     void saveOrder(Orders orders);
 
-    List<Orders> findOrderById(int id);
+    List<Orders> findOrderById(int entryId);
 }
