@@ -2,6 +2,7 @@ package com.gestiune.model;
 
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
+import org.hibernate.annotations.Check;
 import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.JoinFormula;
 
@@ -27,8 +28,6 @@ public class ProductEntry implements Serializable {
     private Set<OrderProduct> orderProducts;
     private Product products;
     private Integer remainingStock;
-
-
 
 
     @Id
@@ -82,40 +81,40 @@ public class ProductEntry implements Serializable {
     }
 
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        ProductEntry that = (ProductEntry) o;
+//
+//        if (id != that.id) return false;
+//        if (productId != that.productId) return false;
+//        if (Double.compare(that.priceUnit, priceUnit) != 0) return false;
+//        if (quantity != that.quantity) return false;
+//        if (!dateProduction.equals(that.dateProduction)) return false;
+//        if (!orderProducts.equals(that.orderProducts)) return false;
+//        return products.equals(that.products) && remainingStock.equals(that.remainingStock);
+//
+//    }
 
-        ProductEntry that = (ProductEntry) o;
+//    @Override
+//    public int hashCode() {
+//        int result;
+//        long temp;
+//        result = id;
+//        result = 31 * result + productId;
+//        temp = Double.doubleToLongBits(priceUnit);
+//        result = 31 * result + (int) (temp ^ (temp >>> 32));
+//        result = 31 * result + quantity;
+//        result = 31 * result + dateProduction.hashCode();
+//        result = 31 * result + orderProducts.hashCode();
+//        result = 31 * result + products.hashCode();
+//        result = 31 * result + remainingStock.hashCode();
+//        return result;
+//    }
 
-        if (id != that.id) return false;
-        if (productId != that.productId) return false;
-        if (Double.compare(that.priceUnit, priceUnit) != 0) return false;
-        if (quantity != that.quantity) return false;
-        if (!dateProduction.equals(that.dateProduction)) return false;
-        if (!orderProducts.equals(that.orderProducts)) return false;
-        return products.equals(that.products) && remainingStock.equals(that.remainingStock);
-
-    }
-
-    @Override
-    public int hashCode() {
-        int result;
-        long temp;
-        result = id;
-        result = 31 * result + productId;
-        temp = Double.doubleToLongBits(priceUnit);
-        result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + quantity;
-        result = 31 * result + dateProduction.hashCode();
-        result = 31 * result + orderProducts.hashCode();
-        result = 31 * result + products.hashCode();
-        result = 31 * result + remainingStock.hashCode();
-        return result;
-    }
-
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "entryProduct")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "entryProduct")
     @JsonIgnore
     public Set<OrderProduct> getOrderProducts() {
         return orderProducts;
@@ -126,7 +125,7 @@ public class ProductEntry implements Serializable {
     }
 
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
+    @JoinColumn(name = "product_id", referencedColumnName = "id", nullable = false, insertable = false, updatable = false)
     @JsonIgnore
     public Product getProducts() {
         return products;
@@ -138,6 +137,7 @@ public class ProductEntry implements Serializable {
 
     @Basic(fetch = FetchType.LAZY)
     @Column(name = "remaining_stock", nullable = false)
+    @Check(constraints = "remaining_stock >= 0")
     public Integer getRemainingStock() {
         return remainingStock;
     }
@@ -146,9 +146,12 @@ public class ProductEntry implements Serializable {
         this.remainingStock = remainingStock;
         stockDetail();
     }
-
     public void stockDetail(){
+        int sum=0;
+        for(OrderProduct o:orderProducts){
 
-            remainingStock=quantity;
+            sum+=o.getQuantity();
+        }
+        remainingStock=quantity-sum;
     }
 }

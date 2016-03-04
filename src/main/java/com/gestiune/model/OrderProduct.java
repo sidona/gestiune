@@ -63,34 +63,34 @@ public class OrderProduct implements Serializable {
         this.quantity = quantity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        OrderProduct that = (OrderProduct) o;
-
-        if (id != that.id) return false;
-        if (orderId != that.orderId) return false;
-        if (entryId != that.entryId) return false;
-        if (quantity != that.quantity) return false;
-        if (!order.equals(that.order)) return false;
-        if (!entryProduct.equals(that.entryProduct)) return false;
-        return totalProduct.equals(that.totalProduct);
-
-    }
-
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + orderId;
-        result = 31 * result + entryId;
-        result = 31 * result + quantity;
-        result = 31 * result + entryProduct.hashCode();
-        result = 31 * result + totalProduct.hashCode();
-        return result;
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//
+//        OrderProduct that = (OrderProduct) o;
+//
+//        if (id != that.id) return false;
+//        if (orderId != that.orderId) return false;
+//        if (entryId != that.entryId) return false;
+//        if (quantity != that.quantity) return false;
+//        if (!order.equals(that.order)) return false;
+//        if (!entryProduct.equals(that.entryProduct)) return false;
+//        return totalProduct.equals(that.totalProduct);
+//
+//    }
+//
+//
+//    @Override
+//    public int hashCode() {
+//        int result = id;
+//        result = 31 * result + orderId;
+//        result = 31 * result + entryId;
+//        result = 31 * result + quantity;
+//        result = 31 * result + entryProduct.hashCode();
+//        result = 31 * result + totalProduct.hashCode();
+//        return result;
+//    }
 
     @ManyToOne
     @JoinColumn(name = "order_id", referencedColumnName = "id", nullable = false,insertable = false,updatable = false)
