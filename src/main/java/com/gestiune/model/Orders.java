@@ -17,7 +17,7 @@ public class Orders implements Serializable{
     private Customer customer;
     private Set<OrderProduct> orderProduct;
     private Date dateOrders;
-    private double totalOrder;
+
 
     @Id
     @Column(name = "id", nullable = false)
@@ -90,23 +90,5 @@ public class Orders implements Serializable{
         this.dateOrders = dateOrders;
     }
 
-    @Basic
-    @Column(name = "total_order", nullable = false, precision = 0)
-    public double getTotalOrder() {
-        return totalOrder;
-    }
 
-    public void setTotalOrder(double totalOrder) {
-        this.totalOrder = totalOrder;
-        orderTotal();
-    }
-
-    public void orderTotal(){
-        double sum=0;
-        for(OrderProduct o:orderProduct){
-            sum+=o.getTotalProduct();
-        }
-        totalOrder=sum;
-
-    }
 }
