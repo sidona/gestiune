@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.Set;
 
 /**
@@ -15,6 +16,8 @@ public class Orders implements Serializable{
     private int customerId;
     private Customer customer;
     private Set<OrderProduct> orderProduct;
+    private Date dateOrders;
+    private double totalOrder;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -75,5 +78,35 @@ public class Orders implements Serializable{
 
     public void setOrderProduct(Set<OrderProduct> orderProduct) {
         this.orderProduct = orderProduct;
+    }
+
+    @Basic
+    @Column(name = "date_orders", nullable = false)
+    public Date getDateOrders() {
+        return dateOrders;
+    }
+
+    public void setDateOrders(Date dateOrders) {
+        this.dateOrders = dateOrders;
+    }
+
+    @Basic
+    @Column(name = "total_order", nullable = false, precision = 0)
+    public double getTotalOrder() {
+        return totalOrder;
+    }
+
+    public void setTotalOrder(double totalOrder) {
+        this.totalOrder = totalOrder;
+        orderTotal();
+    }
+
+    public void orderTotal(){
+        double sum=0;
+        for(OrderProduct o:orderProduct){
+            sum+=o.getTotalProduct();
+        }
+        totalOrder=sum;
+
     }
 }
