@@ -41,12 +41,12 @@ public class CustomerServiceImplTest {
         customers = getCustomerList();
     }
 
-    @Test
-    public void testFindById() throws Exception {
-        Customer emp = customers.get(0);
-        when(dao.findById(anyInt())).thenReturn(emp);
-        Assert.assertEquals(customerService.findById(emp.getId()),emp);
-    }
+//    @Test
+//    public void testFindById() throws Exception {
+//        Customer emp = customers.get(0);
+//        when(dao.findById(anyInt())).thenReturn(emp);
+//        Assert.assertEquals(customerService.findById(emp.getId()),emp);
+//    }
 
     @Test
     public void testFindAll() throws Exception {
@@ -54,12 +54,12 @@ public class CustomerServiceImplTest {
         Assert.assertEquals(customerService.findAll(), customers);
     }
 
-    @Test
-    public void testSaveCustomer() throws Exception {
-        doNothing().when(dao).saveCustomer(any(Customer.class));
-        customerService.saveCustomer(any(Customer.class));
-        verify(dao, atLeastOnce()).saveCustomer(any(Customer.class));
-    }
+//    @Test
+//    public void testSaveCustomer() throws Exception {
+//        doNothing().when(dao).saveCustomer(any(Customer.class));
+//        customerService.saveCustomer(any(Customer.class));
+//        verify(dao, atLeastOnce()).saveCustomer(any(Customer.class));
+//    }
 
     public List<Customer> getCustomerList(){
         Customer customer = new Customer();

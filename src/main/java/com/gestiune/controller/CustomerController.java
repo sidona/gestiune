@@ -21,28 +21,26 @@ public class CustomerController {
     public CustomerService serviceCustomer;
 
 
-    @RequestMapping(value = "/newCustomer", method = RequestMethod.POST, consumes = "application/json")
-    @ResponseBody
-    boolean saveCustomer(@RequestBody Customer customer) {
-        this.serviceCustomer.saveCustomer(customer);
-        return true;
-    }
+//    @RequestMapping(value = "/newCustomer", method = RequestMethod.POST, consumes = "application/json")
+//    @ResponseBody
+//    boolean saveCustomer(@RequestBody Customer customer) {
+//        this.serviceCustomer.saveCustomer(customer);
+//        return true;
+//    }
 
     @RequestMapping(value = "/getAllCustomer", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public List<Customer> listCustomer(ModelMap model) {
-        List<Customer> customers = serviceCustomer.findAll();
-        model.addAttribute("customer", customers);
+    public List<Customer> listCustomer() {
         return serviceCustomer.findAll();
     }
 
 
 
-    @RequestMapping(value = "/customer/{customerId}", method = RequestMethod.GET, produces = "application/json")
-    @ResponseBody
-    public Customer customerId(@PathVariable int customerId) {
-        Customer customer = serviceCustomer.findById(customerId);
-        return customer;
-
-    }
+//    @RequestMapping(value = "/customer/{id}", method = RequestMethod.GET, produces = "application/json")
+//    @ResponseBody
+//    public Customer customerId(@PathVariable int id) {
+//        Customer customer = serviceCustomer.findById(id);
+//        return customer;
+//
+//    }
 }

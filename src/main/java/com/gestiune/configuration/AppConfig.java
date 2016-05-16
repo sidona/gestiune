@@ -41,8 +41,12 @@ public class AppConfig extends WebMvcConfigurerAdapter {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 
+    @Bean
+    public CORSFilter getCorsFilter(){
+        return new CORSFilter();
+    }
+    @Bean
     protected Filter[] getServletFilters() {
-        Filter[] singleton = { new CorsFilter() };
-        return singleton;
+    return new Filter[]{ new CORSFilter() };
     }
 }

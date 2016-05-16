@@ -16,13 +16,13 @@ public class CustomerDaoImpl extends AbstractDao<Integer, Customer> implements C
     @Autowired
     private SessionFactory sessionFactory;
 
-    public Customer findById(int customerId) {
-        return getByKey(customerId);
-    }
-
-    public void saveCustomer(Customer customer){
-        persist(customer);
-    }
+//    public Customer findById(int id) {
+//        return getByKey(id);
+//    }
+//
+//    public void saveCustomer(Customer customer){
+//        persist(customer);
+//    }
 
 
 

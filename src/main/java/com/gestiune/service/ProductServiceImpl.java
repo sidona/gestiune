@@ -21,8 +21,8 @@ public class ProductServiceImpl implements ProductService{
 
 
 
-    public Product findById(int productId) {
-        return dao.findById(productId);
+    public Product findById(int id) {
+        return dao.findById(id);
     }
 
     public void saveProduct(Product product) {

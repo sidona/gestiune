@@ -17,7 +17,6 @@ angular.module('myApp')
 
 
 
-
         $scope.exportPdf = function () {
             var doc = new jsPDF();
             var specialElementHandlers = {

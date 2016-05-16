@@ -5,7 +5,7 @@
 
 
 angular.module('myApp').service('product',function($resource){
-    return $resource('http://localhost:8080/getAllOrderProduct')
+    return $resource('http://localhost:8080/getAllProduct')
 
 });
 angular.module('myApp').service('addProduct',function($resource){

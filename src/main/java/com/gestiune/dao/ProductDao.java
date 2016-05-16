@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface ProductDao {
 
-    Product findById(int productId);
+    Product findById(int id);
 
     void saveProduct(Product product);
 

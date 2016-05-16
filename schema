@@ -1,1 +1,58 @@
-xsa
+CREATE SCHEMA gestiune;
+
+CREATE TABLE gestiune.customer (
+	id                   int  NOT NULL  AUTO_INCREMENT,
+	name                 varchar(30)  NOT NULL  ,
+	address              char(100)  NOT NULL  ,
+	email                char(100)  NOT NULL  ,
+	telephone            char(100)  NOT NULL  ,
+	CONSTRAINT pk_customer PRIMARY KEY ( id )
+ );
+
+CREATE TABLE gestiune.orders (
+	id                   int  NOT NULL  AUTO_INCREMENT,
+	customer_id          int  NOT NULL  ,
+	date_orders          date  NOT NULL  ,
+	CONSTRAINT pk_orders PRIMARY KEY ( id )
+ );
+
+CREATE INDEX FK_CUSTOMER ON gestiune.orders ( customer_id );
+
+CREATE TABLE gestiune.product (
+	id                   int  NOT NULL  AUTO_INCREMENT,
+	name                 varchar(30)  NOT NULL  ,
+	CONSTRAINT pk_product PRIMARY KEY ( id )
+ );
+
+CREATE TABLE gestiune.product_entry (
+	id                   int  NOT NULL  AUTO_INCREMENT,
+	product_id           int  NOT NULL  ,
+	price_unit           double  NOT NULL  ,
+	quantity             int  NOT NULL  ,
+	date_production      date  NOT NULL  ,
+	remaining_stock      int    ,
+	CONSTRAINT pk_product_entry PRIMARY KEY ( id )
+ );
+
+CREATE INDEX FK_PRODUCT ON gestiune.product_entry ( product_id );
+
+CREATE TABLE gestiune.order_product (
+	id                   int  NOT NULL  AUTO_INCREMENT,
+	order_id             int  NOT NULL  ,
+	entry_id             int  NOT NULL  ,
+	quantity             int  NOT NULL  ,
+	total_product        double    ,
+	CONSTRAINT pk_order_product PRIMARY KEY ( id )
+ );
+
+CREATE INDEX fk_order_product ON gestiune.order_product ( entry_id );
+
+CREATE INDEX FK_ORDERS ON gestiune.order_product ( order_id );
+
+ALTER TABLE gestiune.order_product ADD CONSTRAINT `FK_ORDERS` FOREIGN KEY ( order_id ) REFERENCES gestiune.orders( id ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE gestiune.order_product ADD CONSTRAINT fk_order_product FOREIGN KEY ( entry_id ) REFERENCES gestiune.product_entry( id ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE gestiune.orders ADD CONSTRAINT `FK_CUSTOMER` FOREIGN KEY ( customer_id ) REFERENCES gestiune.customer( id ) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+ALTER TABLE gestiune.product_entry ADD CONSTRAINT `FK_PRODUCT` FOREIGN KEY ( product_id ) REFERENCES gestiune.product( id ) ON DELETE NO ACTION ON UPDATE NO ACTION;

@@ -9,9 +9,9 @@ import java.util.List;
  */
 public interface CustomerDao {
 
-    Customer findById(int customerId);
-
-    void saveCustomer(Customer customer);
+//    Customer findById(int id);
+//
+//    void saveCustomer(Customer customer);
 
     List<Customer> findAll();
 

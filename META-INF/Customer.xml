@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <customer id="1" NAME="SAMY" ADDRESS="garii" EMAIL="samy@samy.com" TELEPHONE="123456" />
+    <customer id="2" NAME="TOMY" ADDRESS="grivitei" EMAIL="tomy@tomy.com" TELEPHONE="00000"  />
+</dataset>

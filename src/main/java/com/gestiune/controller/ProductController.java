@@ -50,10 +50,10 @@ public class ProductController {
         return true;
     }
 
-    @RequestMapping(value = "/product/{productId}", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
-    public Product productId(@PathVariable int productId) {
-        Product product = service.findById(productId);
+    public Product productId(@PathVariable int id) {
+        Product product = service.findById(id);
         return product;
 
     }

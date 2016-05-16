@@ -16,7 +16,7 @@ import javax.sql.DataSource;
 /**
  * Created by sdonose on 3/8/2016.
  */
-@ContextConfiguration(classes = { HibernateConfiguration.class })
+@ContextConfiguration(classes = { HibernateConfigurationTest.class })
 public abstract class EntityDaoImplTest extends AbstractTransactionalTestNGSpringContextTests {
 
     @Autowired

@@ -19,9 +19,9 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerDao dao;
 
 
-    public Customer findById(int customerId) {
-        return dao.findById(customerId);
-    }
+//    public Customer findById(int id) {
+//        return dao.findById(id);
+//    }
 
     public List<Customer> findAll() {
         return dao.findAll();
@@ -29,9 +29,9 @@ public class CustomerServiceImpl implements CustomerService {
 
 
 
-    public void saveCustomer(Customer customer) {
-        dao.saveCustomer(customer);
-    }
+//    public void saveCustomer(Customer customer) {
+//        dao.saveCustomer(customer);
+//    }
 
 
 }
