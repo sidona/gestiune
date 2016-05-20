@@ -17,14 +17,13 @@ public class ProductEntryDaoImpl extends AbstractDao<Integer,ProductEntry> imple
     @Autowired
     private SessionFactory sessionFactory;
 
-    public ProductEntry findById(int id) {
-        return null;
+    public ProductEntry findById(int productId) {
+         return getByProductId(productId);
     }
 
     public void saveProd(int productId, double priceUnit, int quantity, Date dateProduction) {
          sessionFactory.getCurrentSession().createSQLQuery("INSERT INTO product_entry  (product_id,price_unit,quantity,date_production) VALUE (:product_id,:priceUnit,:quantity,\"2016-02-22\")")
                 .executeUpdate();
-
     }
 
     public void saveProductEntry(ProductEntry productEntity) {

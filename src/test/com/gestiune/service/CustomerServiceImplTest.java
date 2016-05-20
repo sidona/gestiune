@@ -1,25 +1,19 @@
 package com.gestiune.service;
 
-import com.gestiune.controller.CustomerControllerTest;
 import com.gestiune.dao.CustomerDao;
 import com.gestiune.model.Customer;
 import junit.framework.Assert;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.Spy;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.mockito.MockitoAnnotations;
-import org.mockito.InjectMocks;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyInt;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.atLeastOnce;
 import static org.testng.Assert.*;
 
 /**

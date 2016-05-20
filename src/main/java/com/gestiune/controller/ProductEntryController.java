@@ -29,6 +29,14 @@ public class ProductEntryController {
         return productEntryList;
     }
 
+    @RequestMapping(value = "/productEntry/{productId}", method = RequestMethod.GET, produces = "application/json")
+    @ResponseBody
+    public ProductEntry productId(@PathVariable int productId) {
+        ProductEntry product = productEntryService.findById(productId);
+        return product;
+
+    }
+
     @RequestMapping(value = "/newProductEntry", method = RequestMethod.POST, consumes = "application/json")
     @ResponseBody
     boolean saveProduct(@RequestBody ProductEntry productEntry) {

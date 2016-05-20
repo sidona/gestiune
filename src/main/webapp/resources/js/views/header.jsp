@@ -13,7 +13,7 @@
         <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav pull-left">
-                <li ui-sref-active="active"><a ui-sref='product'>Product</a></li>
+                <li ui-sref-active="active"><a ui-sref="product">Product</a></li>
                 <li ui-sref-active="active"><a ui-sref="customer">Customer</a></li>
                 <li ui-sref-active="active"><a ui-sref="contact">Contact</a></li>
 

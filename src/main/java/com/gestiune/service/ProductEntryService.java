@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface ProductEntryService {
 
-    ProductEntry findById(int id);
+    ProductEntry findById(int productId);
 
     void saveProductEntry(ProductEntry productEntity);
 

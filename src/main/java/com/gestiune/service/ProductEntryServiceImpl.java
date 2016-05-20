@@ -19,8 +19,8 @@ public class ProductEntryServiceImpl implements ProductEntryService {
     @Autowired
     private ProductEntryDao dao;
 
-    public ProductEntry findById(int id) {
-        return null;
+    public ProductEntry findById(int productId) {
+        return dao.findById(productId);
     }
 
     public void saveProductEntry(ProductEntry productEntity) {

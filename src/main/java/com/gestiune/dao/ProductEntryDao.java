@@ -10,13 +10,11 @@ import java.util.List;
  */
 public interface ProductEntryDao {
 
-    ProductEntry findById(int id);
+    ProductEntry findById(int productId);
 
     void saveProd(int productId, double priceUnit, int quantity, Date dateProduction);
 
     void saveProductEntry(ProductEntry productEntity);
 
     List<ProductEntry> findAllProductsEntry();
-
-
 }

@@ -6,5 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div>Name: {{productDetail.name}}</div>
-<div>Price: {{productDetail.price}}</div>
+<div ng-controller="productDetailCtrl">
+    <div>Name: {{productDetail}</div>
+    <div>Price: {{productDetail.price}}</div>
+</div>
+

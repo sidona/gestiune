@@ -22,7 +22,7 @@ public class ProductController {
 
 
 //Product
-//afiseaza nume si pret
+//afiseaza nume
     @RequestMapping(value = "/getAllProduct", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Product> listProduct(ModelMap model) {

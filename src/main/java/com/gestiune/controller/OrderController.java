@@ -20,7 +20,6 @@ public class OrderController {
     public OrdersService ordersService;
 
 
-
     @RequestMapping(value = "/getAllOrders", method = RequestMethod.GET, produces = "application/json")
     @ResponseBody
     public List<Orders> listOrders(ModelMap model) {

@@ -34,6 +34,11 @@ public abstract class AbstractDao<PK extends Serializable, T> {
         return (T) getSession().get(persistentClass, key);
     }
 
+    public T getByProductId(int productId) {
+        return (T) getSession().get(persistentClass, productId);
+    }
+
+
     public void persist(T entity) {
         getSession().persist(entity);
     }

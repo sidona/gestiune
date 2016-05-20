@@ -1,6 +1,5 @@
 package com.gestiune.dao;
 
-import com.gestiune.configuration.HibernateConfiguration;
 import com.gestiune.configuration.HibernateConfigurationTest;
 import org.dbunit.database.DatabaseDataSourceConnection;
 import org.dbunit.database.IDatabaseConnection;

@@ -16,11 +16,12 @@ angular.module('myApp').service('addProduct',function($resource){
 });
 
 angular.module('myApp').service('detailProduct',function($resource){
-    return $resource('http://localhost:8080/product/:productId',{productId:'productId'},
+    return $resource('http://localhost:8080/productList/:productId',{productId:'productId'},
         {
             post:{method:'POST'}
         })
 });
+
 
 
 angular.module('myApp').service('deleteProduct',function($resource){
